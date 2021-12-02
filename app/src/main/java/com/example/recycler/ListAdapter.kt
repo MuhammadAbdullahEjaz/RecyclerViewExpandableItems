@@ -3,6 +3,7 @@ package com.example.recycler
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.recycler.databinding.ListHeaderBinding
@@ -26,10 +27,18 @@ class ListAdapter(private val data:List<ListData>): RecyclerView.Adapter<Recycle
 
     inner class ListHolder(view:View):RecyclerView.ViewHolder(view){
         val textVeiw:TextView = view.findViewById(R.id.list_item)
+        val list:LinearLayout = view.findViewById(R.id.list)
 
         fun bind(position: Int){
             val item = data[position-1]
             textVeiw.text = item.title
+            itemView.setOnClickListener{
+                if(list.visibility == View.GONE){
+                    list.visibility = View.VISIBLE
+                }else{
+                    list.visibility = View.GONE
+                }
+            }
         }
     }
 
